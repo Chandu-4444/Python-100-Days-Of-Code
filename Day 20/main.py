@@ -25,6 +25,7 @@ segments = []
 
 snake = Snake()
 food = Food()
+
 scoreboard = ScoreBoard()
 SPEED = [0.1, 0.099, 0.089, 0.079, 0.069, 0.059, 0.049, 0.039, 0.029, 0.019]
 
