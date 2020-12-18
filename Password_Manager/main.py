@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
+import json
 
 
 #Password Generator
@@ -33,21 +34,47 @@ def save():
         messagebox.showinfo(title="🚫", message="Empty Fields are Invalid!")
 
     else:
+        new_data = {
+            website_entry.get():
+                {
+                    "email": email_entry.get(),
+                    "password": password_entry.get()
 
-        is_ok = messagebox.askokcancel(title=website_entry.get(), message=f"Details Entered:\nEmail: {email_entry.get()}\nPassword: {password_entry.get()}\nIs it ok?")
-        if is_ok:
-            file = open("data.txt", "a")
-            file.write(f"{website_entry.get()} | {email_entry.get()} | {password_entry.get()}\n")
-            file.close()
+                }
+        }
+        try:
+            with open("data.json", "r") as file:
+                #json.dump(new_data, file, indent=4)
+                # Reading Old Data
+                data = json.load(file)
+        except FileNotFoundError:
+            with open("data.json", "w") as file:
+                json.dump(new_data, file, indent=4)
+
+        else:
+            # Updating Old Data With New Data
+            data.update(new_data)
+
+            with open("data.json", "w") as file:
+                # Dumping Updated Data into JSON
+                json.dump(data, file, indent=4)
+        finally:
             website_entry.delete(0, END)
             password_entry.delete(0, END)
 
-
-
-
-
-
-
+def find_password():
+    try:
+        with open("data.json") as file:
+            data = json.load(file)
+    except FileNotFoundError:
+        messagebox.showinfo(title="Error", message="Not data File Found")
+    else:
+        if website_entry.get() in data:
+            email = data[website_entry.get()]["email"]
+            password = data[website_entry.get()]["password"]
+            messagebox.showinfo(title=website_entry.get(), message=f"Email: {email}\nPassword: {password}")
+        else:
+            messagebox.showinfo(title="Not Found!", message=f"No details found for {website_entry.get()}")
 
 
 window = Tk()
@@ -68,16 +95,20 @@ password_label = Label(text="Password: ")
 password_label.grid(row=3, column=0)
 
 # Entries
-website_entry = Entry(width=36)
-website_entry.grid(row=1, column=1, columnspan=2)
+website_entry = Entry(width=26)
+website_entry.grid(row=1, column=1, columnspan=1)
 website_entry.focus()
+
 email_entry = Entry(width=36)
 email_entry.grid(row=2, column=1, columnspan=2)
 email_entry.insert(0, "chandrakiran.g19@iiits.in")
+
 password_entry = Entry(width=27)
 password_entry.grid(row=3, column=1, columnspan=1)
 
 # Buttons
+search_button = Button(text="search", width=5, padx=13, command=find_password)
+search_button.grid(row= 1, column= 2)
 generate_button = Button(text="Generate", width=5, padx=13, command=generator)
 generate_button.grid(row=3, column=2, columnspan=2)
 add_button = Button(text= "Add", width=34, command=save)

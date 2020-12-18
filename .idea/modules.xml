@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Day 23/.idea/Day 23.iml" filepath="$PROJECT_DIR$/Day 23/.idea/Day 23.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/PycharmProjects.iml" filepath="$PROJECT_DIR$/.idea/PycharmProjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Tkinter-GUI-Programming-by-Example/.idea/Tkinter-GUI-Programming-by-Example.iml" filepath="$PROJECT_DIR$/../Tkinter-GUI-Programming-by-Example/.idea/Tkinter-GUI-Programming-by-Example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../flight/.idea/flight.iml" filepath="$PROJECT_DIR$/../flight/.idea/flight.iml" />
     </modules>
   </component>
 </project>

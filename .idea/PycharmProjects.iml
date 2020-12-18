@@ -5,9 +5,14 @@
     <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Day 23" />
+    <orderEntry type="module" module-name="flight" />
+    <orderEntry type="module" module-name="Tkinter-GUI-Programming-by-Example" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />
     <option name="myDocStringFormat" value="Plain" />
+  </component>
+  <component name="TemplatesService">
+    <option name="TEMPLATE_CONFIGURATION" value="Django" />
   </component>
 </module>
